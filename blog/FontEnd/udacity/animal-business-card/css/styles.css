@@ -1,0 +1,30 @@
+/* 添加 CSS */
+.body {
+	width: 300px;
+	border: 2px solid black;
+	box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.2);
+	padding: 10px;
+	font-family: arial;
+}
+
+.content {
+	width: 276px;
+	border: 2px solid black;
+	padding: 10px;
+	font-size: 12px;
+	margin-top: 10px
+}
+
+.brief {
+	font-style: italic;
+}
+
+.attList {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.key {
+	font-weight: bold;
+}
