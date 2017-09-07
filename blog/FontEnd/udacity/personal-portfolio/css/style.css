@@ -60,6 +60,7 @@
 a {
     color: #424949;
     text-decoration: none;
+    cursor: pointer;
 }
 
 a:hover, a:focus {
