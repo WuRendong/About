@@ -166,7 +166,10 @@ function initializeMap() {
   var locations;
 
   var mapOptions = {
-    disableDefaultUI: true
+    zoom: 11,
+    disableDefaultUI: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    center: {lat: 39.9880071, lng: 116.479643}
   };
 
   /*
@@ -175,6 +178,18 @@ function initializeMap() {
   */
   map = new google.maps.Map(document.querySelector('#map'), mapOptions);
 
+  var kmlLayer = new google.maps.KmlLayer({
+    suppressInfoWindows: true,
+    preserveViewport: true,
+    url: 'https://www.google.com/maps/d/kml?mid=10Zg7y4CuBPTuK5RjCt7hciC6w2g',
+    map: map
+  });
+
+  // kmlLayer.addListener('click', function(event) {
+  //   var content = event.featureData.infoWindowHtml;
+  //   var testimonial = document.getElementById('capture');
+  //   testimonial.innerHTML = content;
+  // });
 
   /*
   locationFinder() returns an array of every location string from the JSONs
