@@ -166,7 +166,7 @@ function initializeMap() {
   var locations;
 
   var mapOptions = {
-    zoom: 11,
+    zoom: 3,
     disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     center: {lat: 39.9880071, lng: 116.479643}
@@ -180,7 +180,7 @@ function initializeMap() {
 
   var kmlLayer = new google.maps.KmlLayer({
     suppressInfoWindows: true,
-    preserveViewport: true,
+    preserveViewport: false,
     url: 'https://www.google.com/maps/d/kml?mid=10Zg7y4CuBPTuK5RjCt7hciC6w2g',
     map: map
   });
@@ -258,7 +258,7 @@ function initializeMap() {
     // bounds.extend() takes in a map location object
     bounds.extend(new google.maps.LatLng(lat, lon));
     // fit the map to the new marker
-    map.fitBounds(bounds);
+    // map.fitBounds(bounds);
     // center the map
     map.setCenter(bounds.getCenter());
   }
@@ -317,7 +317,7 @@ window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
-window.addEventListener('resize', function(e) {
-  //Make sure the map bounds get updated on page resize
-  map.fitBounds(mapBounds);
-});
+// window.addEventListener('resize', function(e) {
+//   //Make sure the map bounds get updated on page resize
+//   map.fitBounds(mapBounds);
+// });

@@ -47,16 +47,14 @@ var bio = {
 		$("#header").append(HTMLContact);
 		$("#contact").append(HTMLContactHead);
 
-		document.getElementById('contact').appendChild(
-    		document.getElementById('topContacts')
-  		);
+		// Move TopContacts div into contact div
+  		$("#topContacts").appendTo("#contact");
 		$("#contact").append(HTMLtopSns);
 		$("#lets-connect").append(HTMLfooterSns);
 		
 		$.each(bio.contacts, function(name, value) {
 			var formattedTopContact = "";
 			var formattedTopSns = "";
-			// var formattedBottomSns = "";
 			if (name == "mobile") {
 				contactValue = HTMLContactValue.replace("%data%", value)
 				formattedTopContact = HTMLContactItem.replace("%data%", HTMLmobileIcon + contactValue);
@@ -68,37 +66,26 @@ var bio = {
 				formattedTopContact = HTMLContactItem.replace("%data%", HTMLlocation + contactValue);
 			} else if (name == "github") {
 				formattedTopSns = HTMLContactValueIconOnly.replace("%data%", HTMLgithubIcon).replace("#", value);
-				// formattedBottomSns = HTMLContactValueIconOnly.replace("%data%", HTMLgithubFooterIcon).replace("#", value);
 			} else if (name == "twitter") {
 				formattedTopSns = HTMLContactValueIconOnly.replace("%data%", HTMLtwittterIcon).replace("#", value);
-				// formattedBottomSns = HTMLContactValueIconOnly.replace("%data%", HTMLtwitterFooterIcon).replace("#", value);
 			} else if (name == "facebook") {
 				formattedTopSns = HTMLContactValueIconOnly.replace("%data%", HTMLfacebookIcon).replace("#", value);
-				// formattedBottomSns = HTMLContactValueIconOnly.replace("%data%", HTMLfacebookFooterIcon).replace("#", value);
 			} else if (name == "weibo") {
 				formattedTopSns = HTMLContactValueIconOnly.replace("%data%", HTMLweiboIcon).replace("#", value);
-				// formattedBottomSns = HTMLContactValueIconOnly.replace("%data%", HTMLweiboFooterIcon).replace("#", value);
 			}
 
 			if (formattedTopContact != "") {
-				$("#topContacts").append(formattedTopContact);
-				$("#footerContacts").append(formattedTopContact);
+				$("#topContacts, #footerContacts").append(formattedTopContact);
 			}
 
 			if (formattedTopSns != "") {
-				$("#topSns").append(formattedTopSns);
-				$("#footerSns").append(formattedTopSns);
+				$("#topSns, #footerSns").append(formattedTopSns);
 			}
-
-			// if (formattedBottomSns != "") {
-			// 	$("#footerSns").append(formattedBottomSns);
-			// }
 		});
 
 		// 3. display skill
 		$("#header").after(HTMLSkillSection);
-		$("#skill-section").append(HTMLskillsHead);
-		$("#skill-section").append(HTMLskills);
+		$("#skill-section").append(HTMLskillsHead, HTMLskills);
 		var index = 0;
 		bio.skills.forEach(function(skill) {
 			$("#skill-list:last").append(HTMLskill.replace("%data%", skill.name).replace("%html%", HTMLskillProgress).replace("%id%", "skill" + index));
@@ -121,8 +108,7 @@ var aboutme = {
 
 	display: function() {
 		$("#top-nav").after(HTMLAboutMe);
-		$("#about-me").append(HTMLAboutMeHead);
-		$('#about-me').append(HTMLAboutMeContent.replace("%data%", aboutme.description));
+		$("#about-me").append(HTMLAboutMeHead, HTMLAboutMeContent.replace("%data%", aboutme.description));
 	}
 }
 
@@ -196,13 +182,13 @@ var education = {
 			"title": "Font-End",
 			"school": "Udacity",
 			"dates": "2017-08-16",
-			"urls": ["https://cn.udacity.com/course/front-end-web-developer-nanodegree--nd001-cn-basic"]
+			"url": "https://cn.udacity.com/course/front-end-web-developer-nanodegree--nd001-cn-basic"
 		},
 		{
 			"title": "DeepLearning",
 			"school": "Udacity",
 			"dates": "2017-09-03",
-			"urls": ["https://cn.udacity.com/course/deep-learning-nanodegree-foundation--nd101"]
+			"url": "https://cn.udacity.com/course/deep-learning-nanodegree-foundation--nd101"
 		}
 	],
 	"display": function() {
@@ -212,8 +198,7 @@ var education = {
 			var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
 			var formattedDegree = HTMLschoolDegree.replace("%data%", school.degree);
 			var formattedSchoolDegree = formattedSchoolName + formattedDegree;
-			$(".education-entry:last").append(HTMLtimelineEntryTitle.replace("%data%", formattedSchoolDegree.replace("#", school.link)).replace("%data2%", school.dates));
-			$(".education-entry:last").append(HTMLtimelineEntryBody.replace("%data%", "Majors:"));
+			$(".education-entry:last").append(HTMLtimelineEntryTitle.replace("%data%", formattedSchoolDegree.replace("#", school.link)).replace("%data2%", school.dates), HTMLtimelineEntryBody.replace("%data%", "Majors:"));
 			var combinedMajors = "";
 			school.majors.forEach(function(major) {
 				$(".timeline-entry-details:last").append(HTMLtimelineEntryDetail.replace("%data%", major));
@@ -231,10 +216,10 @@ var education = {
 			var formattedSchool = HTMLonlineSchool.replace("%data%", course.school);
 			var formattedDates = HTMLonlineDates.replace("%data%", course.dates);
 			var formattedUrl = HTMLonlineURL.replace("%data%", course.url);
-			$(".education-entry:last").append(HTMLtimelineEntryTitle.replace("%data%", formattedTitle + formattedSchool).replace("%data2%", course.dates));
-			$(".education-entry:last").append(HTMLtimelineEntryBody.replace("%data%", "URL:"));
-			course.urls.forEach(function(url) {
-				$(".timeline-entry-details:last").append(url);
+			$(".education-entry:last").append(HTMLtimelineEntryTitle.replace("%data%", formattedTitle + formattedSchool).replace("%data2%", course.dates), HTMLtimelineEntryBody.replace("%data%", "URL:"));
+			var urlItems = course.url.split("|");
+			urlItems.forEach(function(item) {
+				$(".timeline-entry-details:last").append(item);
 			});	
 		});
 	}
@@ -249,7 +234,7 @@ var work = {
 			"location": "Beijing",
 			"dates": "July, 2016 - Future",
 			"summary": "Be responsible for Telephony",
-			"descriptions": ["1. Code maintain", "2. New feature implementation", "3. Patch management", "4. Requirement analyze"]
+			"description": "1. Code maintain.|2. New feature implementation.|3. Patch management.|4. Requirement analyze."
 		},
 		{
 			"employer": "Sony Mobile Communication",
@@ -258,7 +243,7 @@ var work = {
 			"location": "Beijing",
 			"dates": "December, 2010 - Jule, 2016",
 			"summary": "Be responsible for Telephony and RCS stack",
-			"descriptions": ["1. Code maintain", "2. New feature implementation", "3. Patch management", "4. Requirement analyze"]
+			"description": "1. Code maintain.|2. New feature implementation.|3. Patch management.|4. Requirement analyze"
 		},
 		{
 			"employer": "Winks",
@@ -267,7 +252,7 @@ var work = {
 			"location": "Beijing",
 			"dates": "October, 2009 - November, 2010",
 			"summary": "Be responsible for engine development",
-			"descriptions": ["Engine team"]
+			"description": "1.Analyze requirement from custome.|2. Develop new feature in engine module.|3.Maintain engine module"
 		}
 	],
 	"display": function() {
@@ -275,27 +260,15 @@ var work = {
 		work.jobs.forEach(function(job) {
 			$(".timeline:last").append(HTMLworkStart);
 			var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer).replace("#", job.link);
-			$(".work-entry:last").append(HTMLtimelineEntryTitle.replace("%data%", formattedEmployer).replace("%data2%", job.title));
-			$(".title:last").append(HTMLtimelineEntryAddtionInfo.replace("%data%", job.dates));
-			$(".title:last").append(HTMLtimelineEntryAddtionInfo.replace("%data%", job.location));
-			$(".work-entry:last").append(HTMLtimelineEntryBody.replace("%data%", job.summary));
-			job.descriptions.forEach(function(description) {
-				$(".timeline-entry-details:last").append(HTMLtimelineEntryDetail.replace("%data%", description));
+			$(".work-entry:last").append(HTMLtimelineEntryTitle.replace("%data%", formattedEmployer).replace("%data2%", job.title), HTMLtimelineEntryBody.replace("%data%", job.summary));
+			$(".title:last").append(HTMLtimelineEntryAddtionInfo.replace("%data%", job.dates), HTMLtimelineEntryAddtionInfo.replace("%data%", job.location));
+			var descriptionItems = job.description.split("|");
+			descriptionItems.forEach(function(item) {
+				$(".timeline-entry-details:last").append(HTMLtimelineEntryDetail.replace("%data%", item));
 			});
 		});
 	}
 };
-
-// function addTimeLineBlock(container, blockId, timelineImg, timelineImgAlt, contentId, contentTitle, contentBody, link, date) {
-//     console.log("hello world");
-//     $(container).append(timelineBlockTest.replace("%data%", blockId));
-//     $("#" + blockId).append(timelineImgTest.replace("%data%", timelineImg).replace("%data2%", timelineImgAlt));
-//     $("#" + blockId).append(timelineContentTest.replace("%data%", contentId));
-//     $("#" + contentId).append(timelineContentTitle.replace("%data%", contentTitle));
-//     $("#" + contentId).append(timelineContentBody.replace("%data%", contentBody));
-//     $("#" + contentId).append(timelineContentLink);
-//     $("#" + contentId).append(timelineContentDate.replace("%data%", date));
-// }
 
 var projects = {
 	"projects": [
@@ -304,7 +277,7 @@ var projects = {
 			"link": "https://github.com/WuRendong/wurendong.github.io/tree/master/blog/FrontEnd/udacity/developer-thinking",
 			"dates": "Augest, 2017",
 			"summary": "A mail to myself",
-			"descriptions": ["1. What's your expectation for this course?", "2. What's the state of mind when you start this course?", "3. How will you conque the problem during the course?"],
+			"description": "1. What's your expectation for this course?|2. What's the state of mind when you start this course?|3. How will you conque the problem during the course?",
 			"images": ["images/project1-400_small.png"]
 		},
 		{
@@ -312,7 +285,7 @@ var projects = {
 			"link": "https://github.com/WuRendong/wurendong.github.io/tree/master/blog/FrontEnd/udacity/blog-post",
 			"dates": "Augest, 2017",
 			"summary": "Make a blog post as a Web",
-			"descriptions": ["1. Making a post web with HTML5.", "2. Learn about relative technical specification."],
+			"description": "1. Making a post web with HTML5.|2. Learn about relative technical specification.",
 			"images": ["images/project2-400_small.png"]
 		},
 		{
@@ -320,7 +293,7 @@ var projects = {
 			"link": "https://github.com/WuRendong/wurendong.github.io/tree/master/blog/FrontEnd/udacity/animal-business-card",
 			"dates": "Septemper, 2017",
 			"summary": "Make a Animal Business Card",
-			"descriptions": ["1. Make a web as requirement with HTML5 and CSS3.", "2. Learn about relative technial specification."],
+			"description": "1. Make a web as requirement with HTML5 and CSS3.|2. Learn about relative technial specification.",
 			"images": ["images/project3-400_small.png"]
 		}
 	],
@@ -329,10 +302,10 @@ var projects = {
 		projects.projects.forEach(function(project) {
 			$(".timeline:last").append(HTMLprojectStart);
 			var formattedProjectTitle = HTMLprojectTitle.replace("%data%", project.title).replace("#", project.link);
-			$(".project-entry:last").append(HTMLtimelineEntryTitle.replace("%data%", formattedProjectTitle).replace("%data2%", project.dates));
-			$(".project-entry:last").append(HTMLtimelineEntryBody.replace("%data%", project.summary));
-			project.descriptions.forEach(function(description) {
-				$(".timeline-entry-details:last").append(HTMLtimelineEntryDetail.replace("%data%", description));
+			$(".project-entry:last").append(HTMLtimelineEntryTitle.replace("%data%", formattedProjectTitle).replace("%data2%", project.dates), HTMLtimelineEntryBody.replace("%data%", project.summary));
+			var descriptionItems = project.description.split("|");
+			descriptionItems.forEach(function(item) {
+				$(".timeline-entry-details:last").append(HTMLtimelineEntryDetail.replace("%data%", item));
 			});
 			project.images.forEach(function(image) {
 				$(".timeline-entry-images:last").append(HTMLtimelineEntryImage.replace("%data%", image));
@@ -391,6 +364,9 @@ function updateNavTab() {
 	}
 
 	var firstEle = $("#top-nav ul li").first();
+	// Currently bootstrap bar height is 52, as it will overlay a piece of screen, so it should be discounted
+	var navbarHeight = 52;
+	scrollTop += navbarHeight;
     $('#top-nav > ul > li > a').each(function () {
         var curLink = $(this);
         var refElem = $(curLink.attr('href'));
@@ -403,6 +379,8 @@ function updateNavTab() {
             //Add class active
             curLink.parent().addClass("active");
         } else if (scrollTop < skillsTop) {
+        	// This block it for the area that is not considered in logic above, eg. "about me section"
+        	// and the blank area over the header, both of them, "Home" tab should be active
         	$('#top-nav > ul > li').removeClass("active");
         	firstEle.addClass("active");
         } else if ((scrollTop > lastTop + lastHeight) && (eleBottom == lastTop + lastHeight)) {
