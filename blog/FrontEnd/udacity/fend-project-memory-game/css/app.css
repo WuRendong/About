@@ -1,0 +1,494 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+/*
+ * Skin
+ */
+.blue {
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%); 
+    width: 80px;
+    height: 30px; 
+}
+
+.yellow {
+    background: linear-gradient(160deg, #ffef96 0%, #aa7ecd 100%);
+    width: 80px;
+    height: 30px;
+}
+
+.green {
+    background: linear-gradient(160deg, #96ceb4 0%, #aa7ecd 100%); 
+    width: 80px;
+    height: 30px; 
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+    width: 450px;//660px;
+    min-height: 480px;//680px;
+    /*background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);*/
+    padding: 20px;//32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 0em;
+}
+
+.main .middle-level-style {
+    width: 920px;
+    min-height: 400px;
+}
+
+.main .difficult-level-style {
+
+}
+
+.deck .card {
+    height: 90px;//125px;
+    width: 90px;//125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    /*animation*/
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    position: relative;
+    transform: rotateY(0);
+    /*animation*/
+}
+
+.deck li.middle-size {
+    height: 100px;
+    width: 100px;
+}
+
+.deck li.large-size {
+
+}
+
+.deck .card.open {
+    /*animation 0 -> 180deg*/
+    transform: rotateY(180deg);
+    background: #02b3e4;
+    cursor: default;
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+}
+
+.deck .card.mismatch {
+    cursor: default;
+    background: #ff0000;
+    font-size: 33px;
+}
+
+.game-dialog {
+    width: 660px;
+}
+
+.main {
+
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: left;
+    width: 450px;//345px;
+    margin-bottom: 10px;
+}
+
+.score-panel .middle-level-style {
+    width: 920px;
+}
+
+.score-panel .difficult-level-style {
+
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 10px;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .countdown {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.score-panel .restart {
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.score-panel .question {
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.score-panel .settings {
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.score-panel .level {
+    float: right;
+    padding-right: 10px;
+    display: inline-block;
+}
+
+.score-panel .level .middle-level-style {
+
+}
+
+.score-panel .level .difficult-level-style {
+
+}
+
+.score-panel .skin {
+    float: right;
+    padding-right: 10px;
+    display: inline-block;
+}
+
+.score-panel .skin .middle-level-style {
+}
+
+.score-panel .skin .difficult-level-style {
+
+}
+
+.score-panel .theme {
+    float: right;
+    padding-right: 10px;
+    display: inline-block;
+}
+
+.score-panel .theme .middle-level-style {
+}
+
+.score-panel .theme .difficult-level-style {
+
+}
+
+.score-panel .mode {
+    float: right;
+    padding-right: 10px;
+    display: inline-block;
+}
+
+.score-panel .mode .middle-level-style {
+}
+
+.score-panel .mode .difficult-level-style {
+
+}
+
+.settings .dropdown-menu {
+    position: absolute;
+    /*background-color: #f9f9f9;*/
+    width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.settings .close{
+    display: none;
+}
+
+.setting .open{
+    display: block;
+}
+
+.container.hide {
+    display: none;
+}
+
+/*
+ * footer
+ */
+.footer {
+    display: flex;
+    align-items: center;
+}
+
+.footer .copyright {
+    float: left;
+}
+
+.footer .contacts {
+    float: left;
+}
+
+.contacts ul {
+    display: flex;
+    list-style: none;
+}
+
+.snsIcon {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+/*Dialog*/
+.help-content-icon {
+    float:left;
+    margin:0 7px 50px 0;
+}
+
+.snsIcon a:hover{
+    color: #DEDEDE;
+}
+
+.snsIcon a {
+    color: #2e3d49;
+}
+
+/*for result*/
+.congratulations.show {
+    display: block;
+}
+
+.congratulations {
+    display: none;
+    padding: 5em;
+    text-align: center;
+}
+
+.circle-loader {
+  margin: 0 0 30px 10px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-left-color: #5cb85c;
+  animation-name: loader-spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.circle-loader,
+.circle-loader:after {
+  border-radius: 50%;
+  width: 8em;
+  height: 8em;
+}
+
+.load-complete {
+  -webkit-animation: none;
+  animation: none;
+  border-color: #5cb85c;
+  transition: border 500ms ease-out;
+}
+
+.checkmark {
+  display: none;
+}
+.checkmark.draw:after {
+  animation-duration: 800ms;
+  animation-timing-function: ease;
+  animation-name: checkmark;
+  transform: scaleX(-1) rotate(135deg);
+}
+.checkmark:after {
+  opacity: 1;
+  height: 4em;
+  width: 2em;
+  transform-origin: left top;
+  border-right: 2px solid #5cb85c;
+  border-top: 2px solid #5cb85c;
+  content: '';
+  left: 2em;
+  top: 4em;
+  position: absolute;
+}
+
+.btn-success {
+    background: #3dd28d;
+
+    overflow: hidden;
+
+    margin: 10px;
+    padding: 12px 12px;
+
+    cursor: pointer;
+    user-select: none;
+    transition: all 150ms linear;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none !important;
+    text-transform: none;
+    text-transform: capitalize;
+
+    color: #fff;
+    border: 0 none;
+    border-radius: 4px;
+
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+ 
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 160px;
+  
+    box-shadow: 2px 5px 10px #e4e4e4;
+
+    &:hover {
+        transition: all 150ms linear;
+
+        opacity: .85;
+    }
+  
+    &:active {
+        transition: all 150ms linear;
+        opacity: .75;
+    }
+  
+    &:focus {
+        outline: 1px dotted #959595;
+        outline-offset: -4px;
+    }
+}
+
+@keyframes loader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
+  }
+  20% {
+    height: 0;
+    width: 2em;
+    opacity: 1;
+  }
+  40% {
+    height: 4em;
+    width: 2em;
+    opacity: 1;
+  }
+  100% {
+    height: 4em;
+    width: 2em;
+    opacity: 1;
+  }
+}
+
+/*responsive condition*/
+@media only screen and (max-width: 920px) {
+    .main .middle-level-style {
+        width: 600px;
+        min-height: 400px;
+    }
+
+    .deck li.middle-size {
+        height: 80px;
+        width: 80px;
+    }
+
+    .deck {
+        padding: 30px;
+    }
+}
+
+@media only screen and (max-width: 570px) {
+    h1 {
+        font-size: 1.5em;
+    }
+    .main .middle-level-style {
+        width: 450px;
+        min-height: 500px;
+    }
+
+    .deck li.middle-size {
+        height: 72px;
+        width: 72px;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+
+    .deck {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+}

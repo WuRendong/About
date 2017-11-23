@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Matching Game</title>
+    <meta name="description" content="">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">   
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css">
+    <link rel="stylesheet" href="css/app.css"> 
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Matching Game</h1>
+        </header>
+
+        <section class="score-panel">
+        	<ul class="stars">
+        		<li><i class="fa fa-star"></i></li>
+        		<li><i class="fa fa-star"></i></li>
+        		<li><i class="fa fa-star"></i></li>
+        	</ul>
+
+        	<span class="moves">0</span> Moves
+
+            <div class="countdown">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                <span id="timer">10s</span>
+            </div>
+            <div class="question">
+                <i class="fa fa-question-circle"></i>
+            </div>
+            <div class="restart">
+        		<i class="fa fa-repeat"></i>
+        	</div>
+            <div class="settings">
+                <i class="fa fa-wrench" aria-hidden="true"></i>
+                <ul id="menu" class="dropdown-menu close">
+<!--                     <li><div>Level</div>
+                        <ul>
+                          <li><div>Easy</div></li>
+                          <li><div>Middle</div></li>
+                          <li><div>Difficult</div></li>
+                        </ul>
+                    </li>
+                    <li><div>Mode</div>
+                        <ul>
+                          <li><div>Accuracy</div></li>
+                          <li><div>Speed</div></li>
+                        </ul>
+                    </li> -->
+                    <li><div>Theme</div>
+                        <ul>
+                          <li><div>Original</div></li>
+                          <li><div>Money</div></li>
+                          <li><div>Transportation</div></li>
+                        </ul>
+                    </li>
+                    <li><div>Skin</div>
+                        <ul>
+                          <li><div>Blue</div></li>
+                          <li><div>Yellow</div></li>
+                          <li><div>Green</div></li>
+                        </ul>
+                    </li>
+                  <li class="ui-state-disabled"><div>Specials (n/a)</div></li>
+                </ul>
+            </div>
+            <div class="mode">
+                <!-- <span>Mode:</span> -->
+                <select class="modes">
+                  <option value="Accuracy-Mode">Accuracy</option>
+                  <option value="Speed-Mode">Speed</option>
+                </select>
+            </div>
+            <div class="level">
+                <!-- <span>Level:</span> -->
+                <select class="levels">
+                  <option value="0">Easy</option>
+                  <option value="1">Middle</option>
+                  <option value="2">Difficult</option>
+                </select>
+            </div>
+        </section>
+        <section class="main">
+            <ul class="deck">
+            </ul>
+        </section>
+    </div>
+
+    <div class="result">
+        <!--check mark-->
+        <div class="circle-loader">
+            <div class="checkmark draw"></div>
+        </div>
+
+
+        <h1>Congratulations! You Won!</h1>
+        <p>With x moves and x stars</p>
+        <p>Woooooo!</p>
+        <p><button id="toggle" type="button" class="btn btn-success">Play again!</button></p>
+    </div>
+
+    <div id="dialog-message" title="Game Help">
+      <p>
+        <!-- <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span> -->
+        Your files have downloaded successfully into the My Downloads folder.
+      </p>
+      <p>
+        what's going to do
+      </p>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

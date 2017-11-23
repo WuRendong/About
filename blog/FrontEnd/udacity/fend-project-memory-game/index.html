@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Matching Game</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">   
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css">
+    <link rel="stylesheet" href="css/app.css"> 
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Matching Game</h1>
+        </header>
+
+        <section class="score-panel">
+        	<ul class="stars">
+        		<li><i class="fa fa-star"></i></li>
+        		<li><i class="fa fa-star"></i></li>
+        		<li><i class="fa fa-star"></i></li>
+        	</ul>
+
+        	<span class="moves">0</span> Moves
+
+            <div class="countdown">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                <span id="timer"></span>
+            </div>
+            <div class="question">
+                <i class="fa fa-question-circle"></i>
+            </div>
+            <div class="restart">
+        		<i class="fa fa-repeat"></i>
+        	</div>
+            <div class="settings">
+                <i class="fa fa-wrench" aria-hidden="true"></i>
+                <ul id="menu" class="dropdown-menu close">
+<!--                     <li><div>Level</div>
+                        <ul>
+                          <li><div>Easy</div></li>
+                          <li><div>Middle</div></li>
+                          <li><div>Difficult</div></li>
+                        </ul>
+                    </li>
+                    <li><div>Mode</div>
+                        <ul>
+                          <li><div>Accuracy</div></li>
+                          <li><div>Speed</div></li>
+                        </ul>
+                    </li> -->
+                    <li><div>Theme</div>
+                        <ul>
+                          <li><div id="theme-orig">Original</div></li>
+                          <li><div id="theme-money">Money</div></li>
+                          <li><div id="theme-trans">Transportation</div></li>
+                        </ul>
+                    </li>
+                    <li><div>Skin</div>
+                        <ul>
+                          <li><div id="skin-blue" class="blue">Blue</div></li>
+                          <li><div id="skin-yellow" class="yellow">Yellow</div></li>
+                          <li><div id="skin-green" class="green">Green</div></li>
+                        </ul>
+                    </li>
+                  <li class="ui-state-disabled"><div>Specials (n/a)</div></li>
+                </ul>
+            </div>
+            <div class="mode">
+                <!-- <span>Mode:</span> -->
+                <select class="modes">
+                  <option value="0">Normal</option>
+                  <option value="1">Speed</option>
+                </select>
+            </div>
+            <div class="level">
+                <!-- <span>Level:</span> -->
+                <select class="levels">
+                  <option value="0">Easy</option>
+                  <option value="1">Middle</option>
+                  <option value="2" disabled>Difficult</option>
+                </select>
+            </div>
+        </section>
+        <section class="main">
+            <ul class="deck blue">
+            </ul>
+        </section>
+
+        <footer class="footer">
+            <div class="copyright">
+                <i class="fa fa-copyright" aria-hidden="true"></i>
+                <span>Produced by Flyost</span>
+            </div>
+            <div class="contacts">
+                <ul>
+                    <li class="snsIcon"><a href="https://www.facebook.com/aaron.wu.7796" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                    <li class="snsIcon"><a href="https://www.facebook.com/aaron.wu.7796" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li class="snsIcon"><a href="https://www.facebook.com/aaron.wu.7796" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <div class="congratulations">
+        <!--check mark-->
+        <div class="circle-loader">
+            <div class="checkmark draw"></div>
+        </div>
+
+
+        <h1>Congratulations! You Won!</h1>
+        <div class="result"></div>
+        <!-- <p>With x moves and x stars</p> -->
+        <p>Woooooo!</p>
+        <p><button id="toggle" type="button" class="btn btn-success">Play again!</button></p>
+    </div>
+
+    <div style="display: none">
+        <div id="dialog-message" class="helper" title="Game Help">
+            <p>
+                <span class="ui-icon ui-icon-circle-check help-content-icon"></span>
+                Reveal the images behind the cover just like flopping, if two exposed images(one pair) is the same, then keep the exposed, otherwise cover them again.
+            </p>
+            <hr>
+            <p>
+                <span class="ui-icon ui-icon-circle-check help-content-icon"></span>
+                You can set different modes and levels to challenge, regarding normal mode, there are 3 chances average for each pair, and for speed mode, 30s is provided for the challenge.
+            </p>
+            <hr>
+            <p>
+                <span class="ui-icon ui-icon-circle-check help-content-icon"></span>
+                Currently 3 sets of images are provided, you can change the images through theme setting.
+            </p>
+            <hr>
+            <p>
+                Note: More function is under development, in future, more rules will be supported.
+                      BTW, You can also change skin by skin setting.
+            </p>
+        </div>
+        <div id="dialog-message" class="retry" title="Retry Again">
+            <p class="retry-message"></p>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
