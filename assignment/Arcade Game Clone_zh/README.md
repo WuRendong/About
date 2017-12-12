@@ -23,6 +23,9 @@
 # Bugs
 	1. It doesn't look good for the collision between roles and enemies.
 	2. Rewards does not appear with the sound rise up. 
+	3. Audio element can't work well on Safari 11.0.1, error as below.
+	"Unhandled Promise Rejection: NotAllowedError (DOM Exception 35): The request is not allowed by the user agent or the platform in the current context, possibly because the user denied permission.""
+
 
 
 # Licence
