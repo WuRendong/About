@@ -1,0 +1,20 @@
+body {
+    text-align: center;
+}
+
+#main {
+	display: block;
+	align-content: center;
+}
+
+.showInline {
+	display: inline;
+}
+
+#gameZone {
+	display: inline;
+}
+
+.hide {
+	display: none;
+}
