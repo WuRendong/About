@@ -457,7 +457,7 @@ var createRewards = function(baseStep) {
     allRewardSteps = [];
     allRewards = [];
 
-    rewardTimes = getRandomInt(1, 6);
+    rewardTimes = getRandomInt(MIN_REWARDS_PER_ROUND, MAX_REWARDS_PER_ROUND);
     for (var i = 0; i < rewardTimes; i++) {
         var step = getRandomInt(baseStep + 2, baseStep + 30);
         allRewardSteps.push(step);

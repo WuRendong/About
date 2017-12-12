@@ -85,10 +85,12 @@ const NUM_ROW_REWARDS = 3; // show 1 column first
  *            Config            *
  *                              *
  ********************************/
+const MIN_REWARDS_PER_ROUND = 3;
+const MAX_REWARDS_PER_ROUND = 10;
 const MAX_GAME_TIME = 70 * 60; // second
 // TODO: extend it later
 const ENEMY_COUNT_PER_ROW = [
-    1,
+    2,
     1,
     1
 ];
