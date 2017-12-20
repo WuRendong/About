@@ -1,0 +1,140 @@
+.timeline {
+  width: 100%;
+  max-width: 1000px;
+  background: #fff;
+  padding: 50px 50px;
+  position: relative;
+  box-shadow: 0.5rem 0.5rem 2rem 0 rgba(0, 0, 0, 0.2);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.timeline:before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: calc(33% + 15px);
+  bottom: 0px;
+  width: 4px;
+  background: #ddd;
+}
+
+.timeline:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.entry {
+  clear: both;
+  text-align: left;
+  position: relative;
+}
+
+.entry .title {
+  margin-bottom: .5em;
+  float: left;
+  width: 33%;
+  padding-right: 20px;
+  text-align: right;
+  position: relative;
+}
+
+.entry .title:before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 4px solid #0074D9;/*salmon;*/
+  background-color: #fff;
+  border-radius: 100%;
+  top: 2%;/*15% original value*/
+  right: -8px;
+  z-index: 99;
+}
+
+.entry .title h3 {
+  margin: 0;
+  padding-top: 0; /*new change*/
+  font-size: 100%;
+}
+
+.entry .title h3 a {
+    color: #000;
+    margin-top: 0;
+    font-style: normal;
+  }
+
+.entry .title p {
+  margin: 0;
+  font-size: 100%;
+}
+
+.entry .body {
+  margin: 0 0 3em;
+  float: right;
+  width: 66%;
+  padding-left: 30px;
+}
+
+.entry .body p {
+  line-height: 1.4em;
+}
+
+.entry .body p:first-child {
+  margin-top: 0;
+  font-weight: 400;
+}
+
+.entry .body ul {
+  color: #aaa;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.entry .body ul li:before {
+  content: "–";
+  margin-right: .5em;
+}
+
+.entry .body .timeline-entry-images li:before {
+  content: "";
+  margin-right: .5em;
+}
+
+@media screen and (max-width: 745px) {
+  .timeline {
+    padding-left: 0;
+  }
+
+  .timeline:before {
+    left: 50px;
+  }
+
+  .entry .title:before {
+    left: 45px;
+  }
+
+  .entry .title {
+    float: left;
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 0;
+    text-align: left;
+  }
+
+  .entry .title h3 {
+    padding-left: 0;
+  }
+
+  .entry .title p {
+    font-size: 10px;
+    color: #aaa;
+    font-style: italic;
+  }
+
+  .entry .body {
+    width: 100%;
+    padding-left: 80px;
+  }
+}
